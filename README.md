@@ -5,6 +5,8 @@ Express.js, Mongoose, ES6 Syntax is used in this project.
 
 Tutorial on this project is available at https://velopert.com/2448 (KOREAN)
 
+Modifications to this backend API have been done to reuse it as a sample API for the Angular course.
+
 ## Getting Started
 ### Prerequisites
 - node.js 6.9.x
@@ -31,7 +33,9 @@ npm start
 ```
 {
     username,
-    password
+    password,
+    email,
+    dateOfBirth
 }
 ```
 **Description**: creates a new user; first user will be assigned as an admin user. Password is stored in `HMAC-SHA1` format
@@ -56,6 +60,15 @@ npm start
 
 **Description**: checks the JWT. Token should be passed as Url-encoded query or `x-access-token` header
 
+### Favourite Route
+#### List
+`GET /api/favourite/list`
+
+**Description**: retrieves a list of user-favourite movies
+#### Add
+`POST /api/favourite/add/:imdbID`  
+
+**Description**: Saves a favourite movie by its imdb movie ID
 ### User Route
 APIs in user routes need admin's permission to process   
 

@@ -10,7 +10,7 @@ const User = require('../../../models/user')
 */
 
 exports.register = (req, res) => {
-    const { username, password } = req.body
+    const { username, password, email } = req.body
     let newUser = null
 
     // create a new user if does not exist
@@ -18,7 +18,7 @@ exports.register = (req, res) => {
         if(user) {
             throw new Error('username exists')
         } else {
-            return User.create(username, password)
+            return User.create(username, password, email)
         }
     }
 
@@ -52,7 +52,6 @@ exports.register = (req, res) => {
             message: error.message
         })
     }
-
     // check username duplication
     User.findOneByUsername(username)
     .then(create)

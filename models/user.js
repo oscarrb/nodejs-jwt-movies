@@ -6,6 +6,7 @@ const config = require('../config')
 const User = new Schema({
     username: String,
     password: String,
+    email: String,
     admin: { type: Boolean, default: false }
 })
 
@@ -16,14 +17,16 @@ const User = new Schema({
 
 
 // create new User document
-User.statics.create = function(username, password) {
+User.statics.create = function(username, password, email) {
+    console.log('here3');
     const encrypted = crypto.createHmac('sha1', config.secret)
                       .update(password)
                       .digest('base64')
 
     const user = new this({
         username,
-        password: encrypted
+        password: encrypted,
+        email
     })
 
     // return the Promise
@@ -32,6 +35,7 @@ User.statics.create = function(username, password) {
 
 // find one user by using username
 User.statics.findOneByUsername = function(username) {
+
     return this.findOne({
         username
     }).exec()
