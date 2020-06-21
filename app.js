@@ -5,6 +5,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const markdownIt = require('markdown-it')
+const fs = require('fs')
+
+
 mongoose.set('debug', true)
 
 
@@ -31,7 +35,9 @@ app.set('jwt-secret', config.secret)
 
 // index page, just for testing
 app.get('/', (req, res) => {
-    res.send('Hello JWT')
+    fs.readFile('./index-content', 'utf8', function(err, contents) {
+        res.send(new markdownIt().render(contents))
+    })
 })
 
 // configure api router
