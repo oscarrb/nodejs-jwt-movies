@@ -34,8 +34,7 @@ npm start
 {
     username,
     password,
-    email,
-    dateOfBirth
+    email
 }
 ```
 **Description**: creates a new user; first user will be assigned as an admin user. Password is stored in `HMAC-SHA1` format
